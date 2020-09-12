@@ -4,7 +4,9 @@
   "description": "Pure JavaScript Excel clone application",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/Vasylkivskyi/exel-clone/issues"
   },
-  "homepage": "https://github.com/Vasylkivskyi/exel-clone#readme"
+  "homepage": "https://github.com/Vasylkivskyi/exel-clone#readme",
+  "private": true,
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
 }
