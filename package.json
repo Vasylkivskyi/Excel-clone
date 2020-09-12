@@ -1,0 +1,24 @@
+{
+  "name": "excel-clone",
+  "version": "1.0.0",
+  "description": "Pure JavaScript Excel clone application",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vasylkivskyi/exel-clone.git"
+  },
+  "keywords": [
+    "js",
+    "JavaScript",
+    "Excel"
+  ],
+  "author": "Pavlo Vasylkivskyi <pavel.vasylkivskiy@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vasylkivskyi/exel-clone/issues"
+  },
+  "homepage": "https://github.com/Vasylkivskyi/exel-clone#readme"
+}
