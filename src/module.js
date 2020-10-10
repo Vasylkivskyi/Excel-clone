@@ -1,1 +1,5 @@
-console.log('test 5');
+async function start () {
+  Promise.resolve()
+}
+
+start()
