@@ -4,12 +4,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
+const isDev = process.env.NODE_ENV === 'development';
+const isProd = !isDev;
+const filename = (ext) => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`
+
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: './index.js',
   output: {
-    filename: 'bundle.[hash].js',
+    filename: filename('js'),
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
@@ -18,6 +22,11 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
       '@core': path.resolve(__dirname, 'src/core'),
     },
+  },
+  devtool: isDev ? 'source-map' : false,
+  devServer: {
+    port: 3200,
+    hot: isDev,
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -31,9 +40,13 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       template: 'index.html',
+      minify: {
+        removeComments: isProd,
+        collapseWhitespace: isProd,
+      }
     }),
     new MiniCssExtractPlugin({
-      filename: 'bundle.[hash].css',
+      filename: filename('css'),
     }),
   ],
   module: {
