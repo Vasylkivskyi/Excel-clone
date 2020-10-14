@@ -1,8 +1,10 @@
 import './scss/index.scss';
-import { Excel } from '@/components/excel/Excel';
+import {
+  Excel, Header, Formula, Table, Toolbar,
+} from '@components';
 
 const excel = new Excel('#app', {
-  components: [],
+  components: [Header, Toolbar, Formula, Table],
 });
 // eslint-disable-next-line no-console
 console.log(excel);
