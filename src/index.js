@@ -1,5 +1,8 @@
 import './scss/index.scss';
+import { Excel } from '@/components/excel/Excel';
 
-const someFunction = async () => Promise.resolve();
-
-someFunction();
+const excel = new Excel('#app', {
+  components: [],
+});
+// eslint-disable-next-line no-console
+console.log(excel);

@@ -23,7 +23,7 @@ const jsLoaders = () => {
 };
 
 module.exports = {
-  context: path.resolve(__dirname, 'src'),
+  context: path.resolve(__dirname, './src'),
   mode: 'development',
   entry: ['@babel/polyfill', './index.js'],
   output: {
@@ -31,11 +31,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['.js'],
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@core': path.resolve(__dirname, 'src/core'),
+      '@': path.resolve(__dirname, './src'),
+      '@core': path.resolve(__dirname, './src/core'),
     },
+    extensions: ['.js'],
   },
   devtool: isDev ? 'source-map' : false,
   devServer: {
