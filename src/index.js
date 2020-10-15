@@ -7,4 +7,4 @@ const excel = new Excel('#app', {
   components: [Header, Toolbar, Formula, Table],
 });
 // eslint-disable-next-line no-console
-console.log(excel);
+excel.render();
