@@ -10,6 +10,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-new': 'off',
     'no-unused-vars': 'warn',
+    'class-methods-use-this': 'off',
   },
   settings: {
     'import/resolver': {
