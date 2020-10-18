@@ -1,3 +1,9 @@
+import { capitalize } from './utils';
+
+function getMethodName(eventName) {
+  return `on${capitalize(eventName)}`;
+}
+
 export class DOMListener {
   constructor($root, listeners = []) {
     if (!$root) {
@@ -8,11 +14,17 @@ export class DOMListener {
   }
 
   initDomListeners() {
-    // eslint-disable-next-line no-console
-    console.log('Listeners: ', this.listeners);
+    this.listeners.forEach((listener) => {
+      const method = getMethodName(listener);
+      const name = !!this.name || '';
+      if (!this[method]) {
+        throw new Error(`Method ${method} is not defined for ${name} component`);
+      }
+      this.$root.on(listener, this[method].bind(this));
+    });
   }
 
   removeDomListeners() {
-
+    // TODO need to realize
   }
 }
