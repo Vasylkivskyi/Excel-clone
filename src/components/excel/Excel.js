@@ -8,7 +8,7 @@ class Excel {
 
   getRoot() {
     const $root = $.create('div', 'excel'); // creates main excel page div with class excel
-    this.components.forEach((Component) => {
+    this.components = this.components.map((Component) => {
       // creates root div for excel component (<div class="header"></>)
       const $el = $.create('div', Component.className);
       // creates component html (<button></button>)
@@ -17,6 +17,7 @@ class Excel {
       $el.html(component.toHTML());
       // append component (header with all inner html) to root div with class excell
       $root.append($el);
+      return component;
     });
     // returns whole excel component
     return $root;
@@ -25,6 +26,8 @@ class Excel {
   // inserts excel component in div with class 'app'
   render() {
     this.$el.append(this.getRoot());
+
+    this.components.forEach((component) => component.init());
   }
 }
 
