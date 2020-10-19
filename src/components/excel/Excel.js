@@ -2,31 +2,29 @@ import { $ } from '@core/dom';
 
 class Excel {
   constructor(selector, options) {
-    this.$el = $(selector); // main div with id #app
-    this.components = options.components || []; // array of Header, Table, Toolbar, Formula
+    this.$el = $(selector);
+    this.components = options.components || [];
   }
 
   getRoot() {
-    const $root = $.create('div', 'excel'); // creates main excel page div with class excel
+    const $root = $.create('div', 'excel');
     this.components = this.components.map((Component) => {
-      // creates root div for excel component (<div class="header"></>)
       const $el = $.create('div', Component.className);
-      // creates component html (<button></button>)
       const component = new Component($el);
-      // append component html to root div (<div class="header"><button>click</button></div>)
+
+      // For debug purposes start
+      window[`c${component.name}`] = component;
+      // For debug purposes end
+
       $el.html(component.toHTML());
-      // append component (header with all inner html) to root div with class excell
       $root.append($el);
       return component;
     });
-    // returns whole excel component
     return $root;
   }
 
-  // inserts excel component in div with class 'app'
   render() {
     this.$el.append(this.getRoot());
-
     this.components.forEach((component) => component.init());
   }
 }

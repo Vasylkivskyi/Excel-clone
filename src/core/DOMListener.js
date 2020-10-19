@@ -16,15 +16,19 @@ export class DOMListener {
   initDomListeners() {
     this.listeners.forEach((listener) => {
       const method = getMethodName(listener);
-      const name = !!this.name || '';
+      const name = this.name || '';
       if (!this[method]) {
         throw new Error(`Method ${method} is not defined for ${name} component`);
       }
-      this.$root.on(listener, this[method].bind(this));
+      this[method] = this[method].bind(this);
+      this.$root.on(listener, this[method]);
     });
   }
 
   removeDomListeners() {
-    // TODO need to realize
+    this.listeners.forEach((listener) => {
+      const method = getMethodName(listener);
+      this.$root.off(listener, this[method]);
+    });
   }
 }
