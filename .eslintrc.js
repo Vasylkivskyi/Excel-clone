@@ -11,6 +11,7 @@ module.exports = {
     'no-new': 'off',
     'no-unused-vars': 'warn',
     'class-methods-use-this': 'off',
+    'no-plusplus': 'off',
   },
   settings: {
     'import/resolver': {
