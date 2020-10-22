@@ -13,7 +13,7 @@ class Excel {
       const component = new Component($el);
 
       // For debug purposes start
-      window[`c${component.name}`] = component;
+      // window[`c${component.name}`] = component;
       // For debug purposes end
 
       $el.html(component.toHTML());
