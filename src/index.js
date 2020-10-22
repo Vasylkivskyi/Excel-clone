@@ -1,5 +1,10 @@
 import './scss/index.scss';
+import {
+  Excel, Header, Formula, Table, Toolbar,
+} from '@components';
 
-const someFunction = async () => Promise.resolve();
+const excel = new Excel('#app', {
+  components: [Header, Toolbar, Formula, Table],
+});
 
-someFunction();
+excel.render();
