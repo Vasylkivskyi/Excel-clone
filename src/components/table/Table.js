@@ -1,4 +1,5 @@
 import { ExcelComponent } from '@core/ExcelComponent';
+import { $ } from '@core/dom';
 import { createTable } from './table.template';
 
 class Table extends ExcelComponent {
@@ -16,7 +17,17 @@ class Table extends ExcelComponent {
 
   onMousedown(event) {
     if (event.target.dataset.resize) {
-      // TODO
+      const $resizer = $(event.target);
+      const $parent = $resizer.closest('[data-type="resizable"]');
+      const coordinates = $parent.getCoordinates();
+      document.onmousemove = (e) => {
+        const delta = e.pageX - coordinates.right;
+        const value = coordinates.width + delta;
+        $parent.$el.style.width = `${value}px`;
+      };
+      document.onmouseup = () => {
+        document.onmousemove = null;
+      };
     }
   }
 }

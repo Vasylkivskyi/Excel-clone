@@ -37,6 +37,15 @@ class Dom {
     }
     return this;
   }
+
+  closest(selector) {
+    // eslint-disable-next-line no-use-before-define
+    return $(this.$el.closest(selector));
+  }
+
+  getCoordinates() {
+    return this.$el.getBoundingClientRect();
+  }
 }
 
 // Function to use in other files to create Dom class instances and
