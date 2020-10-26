@@ -46,6 +46,10 @@ class Dom {
   getCoordinates() {
     return this.$el.getBoundingClientRect();
   }
+
+  get data() {
+    return this.$el.dataset;
+  }
 }
 
 // Function to use in other files to create Dom class instances and

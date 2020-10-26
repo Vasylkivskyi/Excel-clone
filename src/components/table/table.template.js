@@ -3,13 +3,13 @@ const CODS = {
   Z: 90,
 };
 
-function toCell() {
-  return '<div class="cell" contenteditable></div>';
+function toCell(_, col) {
+  return `<div class="cell" contenteditable data-col="${col}"></div>`;
 }
 
-function toColumn(column) {
+function toColumn(column, index) {
   return `
-    <div class="column" data-type="resizable">
+    <div class="column" data-type="resizable" data-col="${index}">
       ${column}
       <div class="col-resize" data-resize="col"></div>
     </div>
