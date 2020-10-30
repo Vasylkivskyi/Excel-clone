@@ -50,6 +50,10 @@ class Dom {
   get data() {
     return this.$el.dataset;
   }
+
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector);
+  }
 }
 
 // Function to use in other files to create Dom class instances and
