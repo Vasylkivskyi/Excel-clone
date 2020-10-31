@@ -1,5 +1,8 @@
+import { $ } from '@core/dom';
+
 export const resize = ($root, event) => {
   const $resizer = $(event.target);
+  console.log(event.target);
   const type = $resizer.data.resize;
   const sizeProp = type === 'col' ? 'bottom' : 'right';
   let value;
