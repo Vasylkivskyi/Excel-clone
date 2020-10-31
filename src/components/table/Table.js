@@ -1,5 +1,5 @@
 import { ExcelComponent } from '@core/ExcelComponent';
-import { resize } from '@core/utils';
+import { resize } from './table.resize';
 import { createTable } from './table.template';
 
 class Table extends ExcelComponent {
@@ -16,7 +16,9 @@ class Table extends ExcelComponent {
   }
 
   onMousedown(event) {
-    resize(event, this.$root);
+    if (event.target.dataset.resize) {
+      resize(event, this.$root);
+    }
   }
 }
 
