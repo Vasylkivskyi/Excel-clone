@@ -54,6 +54,10 @@ class Dom {
   findAll(selector) {
     return this.$el.querySelectorAll(selector);
   }
+
+  css(styles = {}) {
+    Object.assign(this.$el.style, styles);
+  }
 }
 
 // Function to use in other files to create Dom class instances and

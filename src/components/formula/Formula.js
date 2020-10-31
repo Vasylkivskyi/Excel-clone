@@ -18,6 +18,7 @@ class Formula extends ExcelComponent {
   }
 
   onInput(event) {
+    // eslint-disable-next-line
     console.log('Formula onInput: ', event.target.innerText);
   }
 
