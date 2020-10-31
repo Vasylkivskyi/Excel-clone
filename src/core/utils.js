@@ -1,5 +1,3 @@
-import { $ } from '@core/dom';
-
 export const capitalize = (string) => {
   if (typeof string !== 'string') {
     return '';
