@@ -1,3 +1,8 @@
+export function $(selector) {
+  // eslint-disable-next-line no-use-before-define
+  return new Dom(selector);
+}
+
 class Dom {
   constructor(selector) {
     this.$el = typeof selector === 'string'
@@ -15,6 +20,10 @@ class Dom {
   clear() {
     this.html = '';
     return this;
+  }
+
+  find(selector) {
+    return $(this.$el.querySelector(selector));
   }
 
   on(eventType, callback) {
@@ -58,12 +67,14 @@ class Dom {
   css(styles = {}) {
     Object.assign(this.$el.style, styles);
   }
-}
 
-// Function to use in other files to create Dom class instances and
-// to call Dom class methods
-export function $(selector) {
-  return new Dom(selector);
+  addClass(className) {
+    this.$el.classList.add(className);
+  }
+
+  removeClass(className) {
+    this.$el.classList.remove(className);
+  }
 }
 
 $.create = (tagName, classes = '') => {
