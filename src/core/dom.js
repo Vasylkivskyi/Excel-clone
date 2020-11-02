@@ -17,6 +17,10 @@ class Dom {
     return this.$el.outerHTML.trim();
   }
 
+  id() {
+    return this.data.id;
+  }
+
   clear() {
     this.html = '';
     return this;
