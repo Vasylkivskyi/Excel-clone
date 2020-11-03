@@ -32,9 +32,19 @@ class Table extends ExcelComponent {
     if (shouldResize(event)) {
       resize(this.$root, event);
     } else if (isACell(event)) {
+      const $target = $(event.target);
       if (selectGroup(event)) {
-        console.log('id', this.selection.current.id());
-        // this.selection.selectGroup($(event.target));
+        const target = $target.id(true);
+        const current = this.selection.current.id(true);
+        // eslint-disable-next-line no-use-before-define
+        const cols = range(target.col, current.col);
+        // eslint-disable-next-line no-use-before-define
+        const rows = range(target.row, current.row);
+        const ids = cols.reduce((acc, col) => {
+          rows.forEach((row) => acc.push(`${row}:${col}`));
+          return acc;
+        }, []);
+        console.log(ids);
       } else {
         this.selection.select($(event.target));
       }
@@ -43,3 +53,14 @@ class Table extends ExcelComponent {
 }
 
 export default Table;
+
+function range(start, end) {
+  if (start > end) {
+    // eslint-disable-next-line no-param-reassign
+    [end, start] = [start, end];
+  }
+  // eslint-disable-next-line no-array-constructor
+  return new Array(end - start + 1)
+    .fill('')
+    .map((_, index) => start + index);
+}
