@@ -3,7 +3,7 @@ import { $ } from '@core/dom';
 import { resize } from './table.resize';
 import { createTable } from './table.template';
 import {
-  shouldResize, isACell, selectGroup, matrix,
+  shouldResize, isACell, selectGroup, matrix, nextSelector,
 } from './table.functions';
 import TableSelection from './TableSelection';
 
@@ -12,7 +12,7 @@ class Table extends ExcelComponent {
 
   constructor($root) {
     super($root, {
-      listeners: ['mousedown'],
+      listeners: ['mousedown', 'keydown'],
     });
   }
 
@@ -41,6 +41,19 @@ class Table extends ExcelComponent {
       } else {
         this.selection.select($(event.target));
       }
+    }
+  }
+
+  onKeydown(event) {
+    const keys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter', 'Tab'];
+    const { key } = event;
+    if (keys.includes(key) && !event.shiftKey) {
+      event.preventDefault();
+
+      const id = this.selection.current.id(true);
+      // eslint-disable-next-line no-use-before-define
+      const $next = this.$root.find(nextSelector(key, id));
+      this.selection.select($next);
     }
   }
 }

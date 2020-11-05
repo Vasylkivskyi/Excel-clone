@@ -15,3 +15,26 @@ export const matrix = ($target, $current) => {
     return acc;
   }, []);
 };
+export function nextSelector(key, { col, row }) {
+  const MIN_VALUE = 0;
+  let newRow = row;
+  let newCol = col;
+  // eslint-disable-next-line default-case
+  switch (key) {
+    case 'ArrowDown':
+    case 'Enter':
+      newRow = row + 1;
+      break;
+    case 'Tab':
+    case 'ArrowRight':
+      newCol = col + 1;
+      break;
+    case 'ArrowLeft':
+      newCol = col - 1 < MIN_VALUE ? MIN_VALUE : row - 1;
+      break;
+    case 'ArrowUp':
+      newRow = row - 1 < MIN_VALUE ? MIN_VALUE : row - 1;
+      break;
+  }
+  return `[data-id="${newRow}:${newCol}"]`;
+}

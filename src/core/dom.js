@@ -41,6 +41,11 @@ class Dom {
     this.$el.addEventListener(eventType, callback);
   }
 
+  focus() {
+    this.$el.focus();
+    return this;
+  }
+
   off(eventType, callback) {
     this.$el.removeEventListener(eventType, callback);
   }
