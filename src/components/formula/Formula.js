@@ -3,10 +3,11 @@ import { ExcelComponent } from '@core/ExcelComponent';
 class Formula extends ExcelComponent {
   static className = 'excel__formula';
 
-  constructor($root) {
+  constructor($root, options) {
     super($root, {
       name: 'Formula',
       listeners: ['input'],
+      ...options,
     });
   }
 
@@ -20,6 +21,8 @@ class Formula extends ExcelComponent {
   onInput(event) {
     // eslint-disable-next-line
     console.log('Formula onInput: ', event.target.innerText);
+    const text = event.target.innerText;
+    this.emitter.emit('test', text);
   }
 
   onClick() {}

@@ -8,7 +8,7 @@ export class Emitter {
     if (!Array.isArray(this.listeners[event])) {
       return false;
     }
-    this.listeners.forEach((listener) => {
+    this.listeners[event].forEach((listener) => {
       listener(...args);
     });
     return true;

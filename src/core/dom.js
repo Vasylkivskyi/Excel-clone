@@ -37,6 +37,10 @@ class Dom {
     return $(this.$el.querySelector(selector));
   }
 
+  text(text) {
+    this.$el.textContent = text;
+  }
+
   on(eventType, callback) {
     this.$el.addEventListener(eventType, callback);
   }
